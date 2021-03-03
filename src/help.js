@@ -109,7 +109,7 @@ const help = (prefix) => {
   ║➩ ❍ ${prefix}bucin
   ║➩ ❍ ${prefix}trust
   ║➩ ❍ ${prefix}dare
-  ║➩ ❍ ${prefix}simi
+  ║➩ ❍ ${prefix}simih
 ❍ COMANDOS DE AUDIO
   
   ║➩ ❍ ${prefix}bahasa
