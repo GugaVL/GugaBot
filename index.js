@@ -44,7 +44,7 @@ const speed = require('performance-now')
 
 /******BEGIN OF JSON INPUT******/
 const welkom = JSON.parse(fs.readFileSync('./database/json/welkom.json'))
-const nsfw = JSON.parse(fs.readFileSync('./database/json/nsfw.json'))
+const augusto = JSON.parse(fs.readFileSync('./database/json/augusto.json'))
 const samih = JSON.parse(fs.readFileSync('./database/json/simi.json'))
 const user = JSON.parse(fs.readFileSync('./database/json/user.json'))
 const _leveling = JSON.parse(fs.readFileSync('./database/json/leveling.json'))
@@ -56,7 +56,7 @@ const { help } = require('./src/help')
 const { logomaker } = require('./database/menu/logomaker')
 const { gugamenu } = require('./src/gugamenu')
 const { menuadmin } = require('./src/menuadmin')
-const { nsfwmenu } = require('./src/nsfwmenu')
+const { augustomenu } = require('./src/augustomenu')
 const { bct } = require('./src/bct')
 /*const { mediamenu } = require('./database/menu/mediamenu')
 const { educationmenu } = require('./database/menu/educationmenu')
@@ -209,7 +209,7 @@ async function starts() {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `Xauzinho @${num.split('@')[0]}👋`
+				teks = `J� vai terde  @${num.split('@')[0]}👋`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			}
@@ -283,7 +283,7 @@ async function starts() {
 			const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
 			const isGroupAdmins = groupAdmins.includes(sender) || false
 			const isWelkom = isGroup ? welkom.includes(from) : false
-			const isNsfw = isGroup ? nsfw.includes(from) : false
+			const isNsfw = isGroup ? augusto.includes(from) : false
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
                         const isUser = user.includes(sender)
@@ -363,8 +363,8 @@ case 'timer':
 							case 'menuadmin':
 								client.sendMessage(from, menuadmin(prefix, sender), text, {quoted: mek})
 										break
-										case 'nsfwmenu':
-											client.sendMessage(from, nsfwmenu(prefix, sender), text, {quoted: mek})
+										case 'augustomenu':
+											client.sendMessage(from, augustomenu(prefix, sender), text, {quoted: mek})
 													break
                case 'virtex':
                client.sendMessage(from, virtex(prefix, sender), text, {quoted: mek})
@@ -1392,11 +1392,11 @@ case 'timer':
 					const by = hob[Math.floor(Math.random() * hob.length)]
 					client.sendMessage(from, 'Pertanyaan : *'+hobby+'*\n\nResponda : '+ by, text, { quoted: mek })
 					break
-                                case 'nsfwneko':
+                                case 'augustoneko':
 				    try{
-						if (!isNsfw) return reply('❌ *NSFW NAUM ATIVADO* ❌')
+						if (!isNsfw) return reply('❌ *AUGUSTO NAUM ATIVADO* ❌')
                                                 if (!isUser) return reply(mess.only.daftarB)
-						res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko?apikey=BotWeA`, {method: 'get'})
+						res = await fetchJson(`https://tobz-api.herokuapp.com/api/augustoneko?apikey=BotWeA`, {method: 'get'})
 						buffer = await getBuffer(res.result)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'mesum'})
 					} catch (e) {
@@ -1425,19 +1425,19 @@ case 'timer':
 					buffer = await getBuffer(anu.result)
 					client.sendMessage(from, buffer, image, {quoted: mek})
 					break				
-                                 case 'nsfw':
+                                 case 'augusto':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (args.length < 1) return reply('digite 1 para ativar')
 					if (Number(args[0]) === 1) {
 						if (isNsfw) return reply('o recurso está ativo')
-						nsfw.push(from)
-						fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
-						reply('❬ SUCESSO ❭ ativado o recurso nsfw neste grupo')
+						augusto.push(from)
+						fs.writeFileSync('./database/json/augusto.json', JSON.stringify(augusto))
+						reply('❬ SUCESSO ❭ ativado o recurso augusto neste grupo')
 					} else if (Number(args[0]) === 0) {
-						nsfw.splice(from, 1)
-						fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
-						reply('❬ SUCESSO ❭ desativado o recurso nsfw neste grupo')
+						augusto.splice(from, 1)
+						fs.writeFileSync('./database/json/augusto.json', JSON.stringify(augusto))
+						reply('❬ SUCESSO ❭ desativado o recurso augusto neste grupo')
 					} else {
 						reply('digite 1 para ativar, 0 para desativar o recurso')
 					}
@@ -1571,11 +1571,11 @@ case 'timer':
                                         hasil = `*Kedalaman* : ${anu.kedalaman}\n*Koordinat* : ${anu.koordinat}\n*Lokasi* : ${anu.lokasi}\n*Magnitude* : ${anu.magnitude}\n*Map* : ${anu.map}\n*Potensi* : ${anu.potensi}\n*Waktu* : ${anu.waktu}`
                                         client.sendMessage(from, hasil, text, {quoted:mek})
                                         break
-                                case 'nsfwtrap':
+                                case 'augustotrap':
                                         try{
-                                                if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+                                                if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
                                                 if (!isUser) return reply(mess.only.daftarB)
-                                                res = await fetchJson(`https://tobz-api.herokuapp.com/nsfwtrap?apikey=BotWeA`, {method: 'get'})
+                                                res = await fetchJson(`https://tobz-api.herokuapp.com/augustotrap?apikey=BotWeA`, {method: 'get'})
                                                 buffer = await getBuffer(res.result)
                                                 client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Nih gambarnya kak...'})
                                         } catch (e) {
@@ -1585,7 +1585,7 @@ case 'timer':
 										break
 										case 'randomhentai': 
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=BotWeA`, {method: 'get'})
 							buffer = await getBuffer(res.result)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'hentai teros'})
@@ -1594,10 +1594,10 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 						break
-					case 'nsfwloli':
+					case 'augustololi':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
-							res = await fetchJson(`https://api.lolis.life/random?nsfw=true`, {method: 'get'})
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
+							res = await fetchJson(`https://api.lolis.life/random?augusto=true`, {method: 'get'})
 							buffer = await getBuffer(res.url)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
 						} catch (e) {
@@ -1605,9 +1605,9 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 						break
-					case 'nsfwbobs': 
+					case 'augustobobs': 
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`https://meme-api.herokuapp.com/gimme/biganimetiddies`, {method: 'get'})
 							buffer = await getBuffer(res.url)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Tai os peitos que vc queria\npunhetero de merda'})
@@ -1616,10 +1616,10 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 						break
-					case 'nsfwblowjob':
+					case 'augustoblowjob':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
-							res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwblowjob`, {method: 'get'})
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
+							res = await fetchJson(`https://tobz-api.herokuapp.com/api/augustoblowjob`, {method: 'get'})
 							buffer = await getBuffer(res.result)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
 						} catch (e) {
@@ -1627,9 +1627,9 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 						break
-					case 'nsfwneko':
+					case 'augustoneko':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`https://api.computerfreaker.cf/v1/neko`, {method: 'get'})
 							buffer = await getBuffer(res.result)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'ni anjim'})
@@ -1640,7 +1640,7 @@ case 'timer':
 						break
 					case 'trap':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`https://api.computerfreaker.cf/v1/trap`, {method: 'get'})
 							buffer = await getBuffer(res.result)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'ni anjim'})
@@ -1649,9 +1649,9 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 					break
-				case 'nsfwass':
+				case 'augustoass':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`'https://meme-api.herokuapp.com/gimme/animebooty`, {method: 'get'})
 							buffer = await getBuffer(res.url)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Tai a bunda que vc queria'})
@@ -1660,9 +1660,9 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 						break
-					case 'nsfwsidebobs':
+					case 'augustosidebobs':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`https://meme-api.herokuapp.com/gimme/sideoppai`, {method: 'get'})
 							buffer = await getBuffer(res.url)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'aaaah'})
@@ -1671,9 +1671,9 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 					    break
-					case 'nsfwahegao':
+					case 'augustoahegao':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`https://meme-api.herokuapp.com/gimme/ahegao`, {method: 'get'})
 							buffer = await getBuffer(res.url)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'fodar'})
@@ -1682,9 +1682,9 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 						break
-					case 'nsfwthighs':
+					case 'augustothighs':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`https://meme-api.herokuapp.com/gimme/animethighss`, {method: 'get'})
 							buffer = await getBuffer(res.url)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'aaah q bosta'})
@@ -1693,9 +1693,9 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 						break
-					case 'nsfwfeets':
+					case 'augustofeets':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`https://meme-api.herokuapp.com/gimme/animefeets`, {method: 'get'})
 							buffer = await getBuffer(res.url)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Tai mais fia sapoha no cu'})
@@ -1704,9 +1704,9 @@ case 'timer':
 							reply('❌ *ERROR* ❌') 
 						}
 						break
-					case 'nsfwarmpits':
+					case 'augustoarmpits':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
 							res = await fetchJson(`https://meme-api.herokuapp.com/gimme/animearmpits`, {method: 'get'})
 							buffer = await getBuffer(res.url)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Tai'})
@@ -1715,10 +1715,10 @@ case 'timer':
 							reply('❌ *ERROR* ❌')
 						}
 						break
-						case 'nsfwguga':
+						case 'augustoguga':
 						try {
-							if (!isNsfw) return reply('❌ *NSFW Desativado* ❌')
-							res = await fetchJson(`https://tobz-api.herokuapp.com/nsfwtrap?apikey=BotWeA`, {method: 'get'})
+							if (!isNsfw) return reply('❌ *AUGUSTO Desativado* ❌')
+							res = await fetchJson(`https://tobz-api.herokuapp.com/augustotrap?apikey=BotWeA`, {method: 'get'})
 							buffer = await getBuffer(res.url)
 							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Tai os peitos que vc queria\npunhetero de merda'})
 						} catch (e) {

@@ -130,8 +130,8 @@ const help = (prefix) => {
   ║➩ ❍ ${prefix}qrcode
   ║➩ ❍ ${prefix}afk
   ║➩ ❍ ${prefix}timer
-  ║➩ ❍ ${prefix}fml
-  ║➩ ❍ ${prefix}fml2
+  ║➩ ❍ ${prefix}marcar
+  ║➩ ❍ ${prefix}marcar2
 `
 }
 
